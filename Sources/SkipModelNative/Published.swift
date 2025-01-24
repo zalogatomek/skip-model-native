@@ -9,6 +9,14 @@
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 
+#else
+
+import OpenCombine
+
+#endif
+
+#if SKIP
+
 /// We model `@Published` properties as Kotlin `MutableState` so that Compose will track its values.
 public final class Published<Value>: StateTracker {
     private let subject: PropertySubject<Value, Never>
@@ -68,5 +76,9 @@ private class PropertySubject<Output, Failure> : Subject<Output, Failure> {
         current = value
     }
 }
+
+#else
+
+public typealias Published<Value> = OpenCombine.Published<Value>
 
 #endif

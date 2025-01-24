@@ -4,6 +4,12 @@
 // under the terms of the GNU Lesser General Public License 3.0
 // as published by the Free Software Foundation https://fsf.org
 
+#if !SKIP
+
+import OpenCombine
+
+#endif
+
 #if SKIP
 
 public protocol Cancellable {
@@ -51,5 +57,10 @@ public final class AnyCancellable : Cancellable, Hashable {
         }
     }
 }
+
+#else
+
+public typealias Cancellable = OpenCombine.Cancellable
+public typealias AnyCancellable = OpenCombine.AnyCancellable
 
 #endif
